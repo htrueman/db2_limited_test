@@ -13,3 +13,4 @@ build
 *.dat
 .venv
 *.log
+local_settings.py

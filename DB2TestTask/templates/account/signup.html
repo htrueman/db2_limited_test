@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Sign up</h1>
+    <p>
+        Already have an account? Then please <a href="{% url 'account_login' %}">sign in</a>.
+    </p>
+    <form method="post" class="form_auth">
+        {% csrf_token %}
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        <input type="text" class="form-control" id="{{ form.email.id_for_label }}"
+            name="{{ form.email.name }}" />
+        <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+        <input type="password" class="form-control" id="{{ form.password1.id_for_label }}" 
+            name="{{ form.password1.name }}" />
+        <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+        <input type="password" class="form-control" id="{{ form.password2.id_for_label }}" 
+            name="{{ form.password1.name }}" />
+        <br>
+        <button type="submit" class="btn btn-primary">
+            Sign up
+        </button>
+    </form>
+{% endblock %}
