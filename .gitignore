@@ -1,0 +1,15 @@
+*.sqlite3
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.swn
+*.esproj
+.idea
+.Ds_Store
+*~
+build
+.noseids
+*.dat
+.venv
+*.log
