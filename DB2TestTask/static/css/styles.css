@@ -1,0 +1,23 @@
+.wrapper {
+	width: 50%;
+	margin-left: 35%;
+}
+
+.post-image {
+	width: 350px;
+}
+
+.post-title {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.header {
+	margin-left: 10%;
+}
+
+.auth-wrapper {
+	width: 30%;
+	margin-left: 35%;
+	margin-top: 10%;
+}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="header">
+        <h1>DB2 Limited test task</h1>
+        {% if user.is_authenticated %}
+            <a href="{% url 'account_logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'account_login' %}">Login</a>
+        {% endif %}
+    </div>
+    <div class="wrapper">
+        <form id="sort-form" method="POST">
+            {% csrf_token %}
+            {{ sort_form }}
+            <button type="submit" name="order_by" class="btn btn-default">OK</button>
+        </form>
+        <form id="search-form" method="POST">
+            {% csrf_token %}
+            {{ search_form }}
+            <button type="submit" name="searchbtn" class="btn btn-default">OK</button>
+        </form>
+        {% for post in posts %}
+            <div class="post">
+                <div class="post-title">
+                    {{ post.title }}
+                </div>
+                <div class="post-body">
+                    {{ post.body }}
+                </div>
+                <div class="post-image-div">
+                    <img class="post-image" src="{{ post.image.url }}">
+                </div>
+                <div class="post-author">
+                    Published by: {{ post.author.email }}
+                </div>
+                <div class="post-like" id="{{ post.id }}">
+                    <button class="like-btn btn btn-default" name="likebtn">Like &#128077;</button>
+                    <div class="likes-count">
+                        Likes: {{ post.likers.all.count }}
+                    </div>
+                </div>
+                <a href="{% url 'detail_post' post.id %}">Detail view >></a>
+            </div>
+            <hr>
+        {% endfor %}
+            <ul class="pagination">
+                {% if posts.has_previous %}
+                    <li><a href="?page={{ posts.previous_page_number }}">{{ posts.previous_page_number }}</a></li>
+                {% endif %}
+                    <li><a href="?page={{ posts.number }}">{{ posts.number }}</a></li>
+                {% if posts.has_next %}
+                    <li><a href="?page={{ posts.next_page_number }}">{{ posts.next_page_number }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+{% endblock %}

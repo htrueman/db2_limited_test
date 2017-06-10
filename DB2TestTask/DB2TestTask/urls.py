@@ -15,11 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
+
 from test_task import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^$', login_required(views.posts_view), name='main'),
+    url(r'^post/(?P<post_id>[0-9]+)/$',
+        login_required(views.detail_post_view),
+        name='detail_post'),
+
     url(r'^accounts/', include('allauth.urls')),
-#    url(r'^sign-up/', views.RegistrationView.as_view(), name='registration'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,10 +1,18 @@
 {% load static %}
+<html lang="en">
 <head>
     <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" 
     media="screen, projection"/>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
 </head>
 <body>
 {% block content %} {% endblock %}
 </body>
+<script type="text/javascript">
+    var main_url = "{% url 'main' %}";
+</script>
+</html>

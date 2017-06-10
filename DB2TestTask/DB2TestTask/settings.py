@@ -25,7 +25,7 @@ SECRET_KEY = 'tvt^)93an+1w!yl@v5$65i*cr#dqr&h@448tzqdz5jlo2c7&ku'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,6 +125,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
 # Custom user model
 
 AUTH_USER_MODEL = 'test_task.CustomUser'
@@ -136,9 +146,9 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
@@ -147,3 +157,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 from .local_settings import * # noqa
+
+ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_REDIRECT_URL = 'main'
