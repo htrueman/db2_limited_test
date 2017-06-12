@@ -1,20 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="header">
-        <h1>DB2 Limited test task</h1>
-        {% if user.is_authenticated %}
-            <a href="{% url 'account_logout' %}">Logout</a>
-        {% else %}
-            <a href="{% url 'account_login' %}">Login</a>
-        {% endif %}
-        {% if user.is_superuser %}
-        	<br>
-        	Add new posts and comments on admin
-        	<a href="{% url 'admin:index' %}">site</a>.
-        {% else %}
-        	Log in as admin to add new posts and comments.
-        {% endif %}
-    </div>
+    {% include 'header.html' %}
     <div class="wrapper">
     {% if posts %}
         <form id="sort-form" method="POST">
@@ -61,7 +47,7 @@
                 {% endif %}
             </ul>
         {% else %}
-        	<h2>No posts yet.</h2>
+            <h2>No posts yet.</h2>
         {% endif %}
         </div>
 {% endblock %}

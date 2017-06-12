@@ -4,6 +4,20 @@
         <h1>Sign in</h1>
         <form method="post" class="form_auth">
             {% csrf_token %}
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ field.label }}: {{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <label for="{{ form.login.id_for_label }}">{{ form.login.label }}</label>
             <input type="text" class="form-control" id="{{ form.login.id_for_label }}"
                 name="{{ form.login.name }}" />
