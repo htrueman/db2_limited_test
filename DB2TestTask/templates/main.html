@@ -8,6 +8,7 @@
             <a href="{% url 'account_login' %}">Login</a>
         {% endif %}
     </div>
+    {% if posts %}
     <div class="wrapper">
         <form id="sort-form" method="POST">
             {% csrf_token %}
@@ -53,4 +54,5 @@
                 {% endif %}
             </ul>
         </div>
+        {% endif %}
 {% endblock %}
