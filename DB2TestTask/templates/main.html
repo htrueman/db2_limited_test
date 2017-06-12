@@ -7,9 +7,16 @@
         {% else %}
             <a href="{% url 'account_login' %}">Login</a>
         {% endif %}
+        {% if user.is_superuser %}
+        	<br>
+        	Add new posts and comments on admin
+        	<a href="{% url 'admin:index' %}">site</a>.
+        {% else %}
+        	Log in as admin to add new posts and comments.
+        {% endif %}
     </div>
-    {% if posts %}
     <div class="wrapper">
+    {% if posts %}
         <form id="sort-form" method="POST">
             {% csrf_token %}
             {{ sort_form }}
@@ -53,6 +60,8 @@
                     <li><a href="?page={{ posts.next_page_number }}">{{ posts.next_page_number }}</a></li>
                 {% endif %}
             </ul>
-        </div>
+        {% else %}
+        	<h2>No posts yet.</h2>
         {% endif %}
+        </div>
 {% endblock %}
